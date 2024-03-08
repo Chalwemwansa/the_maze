@@ -4,13 +4,10 @@
 #include <SDL2/SDL_image.h>
 #include <stdbool.h>
 
-/*
- * gun - the class that comprises of the different guns the playe can use
- *
- */
+///Gun class that contains all the guns a player can choose from
 class Gun {
 	private:
-		// the renderer that will be used to output thing to the screen from the main func
+		/* the renderer that will be used to output thing to the screen from the main func */
 		SDL_Renderer *renderer = NULL;
 		SDL_Texture *gun_texture = NULL;
 		SDL_Texture *pistol = NULL;
@@ -18,26 +15,26 @@ class Gun {
 		SDL_Texture *machine_gun = NULL;
 		int gun = 0;
 	public:
-		// constructor to initialise the renderer using the renderer from the main func
+		/* Gun - constructor to initialise the renderer using the renderer from the main func */
 		Gun(SDL_Renderer *renderer)
 		{
 			this->renderer = renderer;
 		}
 
-		// function that loads the gun and initialises it for use
+		///gun_init - function that loads the gun and initialises it for use
 		bool gun_init(void)
 		{
-			// check if the image png has been initialised properly
+			/* check if the image png has been initialised properly */
 			if (!(IMG_Init(IMG_INIT_PNG) && IMG_INIT_PNG))
 			{
 				fprintf(stderr, "Error initialising image png: %s\n", IMG_GetError());
 				return (false);
 			}
-			// load gun
+			/* load gun */
 			this->riffle = IMG_LoadTexture(this->renderer, "./textures/riffle.png");
 			this->pistol = IMG_LoadTexture(this->renderer, "./textures/pistol.png");
 			this->machine_gun = IMG_LoadTexture(this->renderer, "./textures/machine_gun.png");
-			//check if gun was loaded properly
+			/* check if gun was loaded properly */
 			if (!(riffle && pistol && machine_gun))
 			{
 				fprintf(stderr, "Error, failed to load gun: %s\n", IMG_GetError());
@@ -46,13 +43,13 @@ class Gun {
 			return (true);
 		}
 
-		//the function that changes the gun to be renderered onto the screen
+		/* change_gun - the function that changes the gun to be renderered onto the screen */
 		void change_gun(void)
 		{
 			this->gun = (this->gun + 1) % 3;
 		}
 
-		//function that is used to render the gun to the screen
+		/// render_gun - function that is used to render the gun to the screen
 		void render_gun(void)
 		{
 			switch (this->gun)
@@ -73,7 +70,9 @@ class Gun {
 			SDL_RenderCopy(this->renderer, gun_texture, NULL, &gun_rect);
 		}
 
-		// function used to set the renderer for the gun class
+		/// renderer_setter - function used to set the renderer for the gun class
+		///
+		/// @renderer: the renderer used to render things to std out
 		void renderer_setter(SDL_Renderer *renderer)
 		{
 			this->renderer = renderer;
@@ -82,7 +81,7 @@ class Gun {
 
 		~Gun(void)
 		{
-			// free up memory after done using the gun
+			/* free up memory after done using the gun */
 			SDL_DestroyTexture(this->gun_texture);
 			SDL_DestroyTexture(this->pistol);
 			SDL_DestroyTexture(this->riffle);

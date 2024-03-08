@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * sdl_instance - initialises and opens up a window for rendering graphics
+ * sdl_init - initialises and opens up a window for rendering graphics
  *
- * instance: the sdl instance passed as an argument to the function
- * return: 0 on success else 1
+ * @instance: the sdl instance passed as an argument to the function
+ * Return: 0 on success else 1
  */
 int sdl_init(SDL_Instance *instance)
 {
@@ -27,7 +27,8 @@ int sdl_init(SDL_Instance *instance)
 	}
 
 	/* create a renderer instance linked to the instance window */
-	instance->renderer = SDL_CreateRenderer(instance->window, -1, SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC);
+	instance->renderer = SDL_CreateRenderer(instance->window, -1,
+						SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC);
 	/* check if the window was opened successfully */
 	if (instance->renderer == NULL)
 	{

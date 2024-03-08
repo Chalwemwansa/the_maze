@@ -1,12 +1,12 @@
 #include "main.h"
+
 /**
  * draw_floor - function draws the floor on the screen by casting rays on the screen
  * 	horizontally
- * 
- * renderer: the renderer that will bbe used to draw the lines on the screen
- * return: void, does not return anything
+ *
+ * @renderer: the renderer that will bbe used to draw the lines on the screen
+ * Return: void, does not return anything
  */
-
 void draw_floor(SDL_Renderer *renderer)
 {
 	for (int x = 0; x < (SCREEN_HEIGHT / 2); x++)
@@ -18,6 +18,12 @@ void draw_floor(SDL_Renderer *renderer)
 	}
 }
 
+/**
+ * add_ceiling - function that adds a ceiling to the maze
+ *
+ * @renderer:  the renderer used to render things to the screen
+ * Return: void, function does not return anything
+ */
 void add_ceiling(SDL_Renderer *renderer)
 {
 	SDL_Texture *night = NULL;

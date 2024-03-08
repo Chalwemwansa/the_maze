@@ -1,11 +1,13 @@
 #include "main.h"
 
 /**
- * event - handles the events from the events function
+ * event_h - handles the events from the events function
  *
- * pos_x: the position of the player in the x-axis
- * pos_y: the position of the player in the y axis
- * dir_x: the direction of the player with respect to the positive x-axis
+ * @pos_x: the position of the player in the x-axis
+ * @pos_y: the position of the player in the y axis
+ * @dir_x: the direction of the player with respect to the positive x-axis
+ * @keys: the array that stores the state of the movement keys
+ * @walls: the double array that stores ones and ones reprenseting walls and floor
  * Return: void, does not return anything
  */
 void event_h(double *pos_x, double *pos_y, double *dir_x, bool *keys, int walls[][28])
@@ -79,14 +81,21 @@ void event_h(double *pos_x, double *pos_y, double *dir_x, bool *keys, int walls[
 /**
  * events - handles keyboard events like key presses
  *
- * dir_x: the players direction with respect to the x-axis
- * return: 0 on success else 1
+ * @dir_x: the players direction with respect to the x-axis
+ * @renderer: the renderer to be used to render things to the screen
+ * @pos_x: the postion of the player in the x-axis
+ * @pos_y: the position of the player in the y-axis
+ * @keys: the keys array that stores the state of the movement keys
+ * @walls: the double array that stores the floor and walls
+ * @gun: the Gun type object
+ * Return: 0 on success else 1
  */
-int events(SDL_Renderer *renderer, double *pos_x, double *pos_y, double *dir_x, bool *keys, int walls[][28], Gun *gun)
+int events(SDL_Renderer *renderer, double *pos_x, double *pos_y, double *dir_x,
+	   bool *keys, int walls[][28], Gun *gun)
 {
 	SDL_Event event;
 	SDL_KeyboardEvent key;
-	
+
 	while (SDL_PollEvent(&event))
 	{
 		if (event.type == SDL_QUIT)

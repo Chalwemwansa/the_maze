@@ -4,7 +4,7 @@
  * main - calls the sdl_init program
  * and all the different classes needed for the game
  *
- * return: 0 on success
+ * Return: 0 on success
  */
 int main(void)
 {

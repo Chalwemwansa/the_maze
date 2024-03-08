@@ -3,9 +3,9 @@
 /**
  * draw_walls - the function draws walls in the maze game
  *
- * renderer: the pointer to the renderer that is being used
- * walls: the 2 dimenssional map for the world
- * return: void, the function does not return anything
+ * @renderer: the pointer to the renderer that is being used
+ * @walls: the 2 dimenssional map for the world
+ * Return: void, the function does not return anything
  */
 void draw_walls(SDL_Renderer *renderer, int walls[][28])
 {
@@ -31,11 +31,12 @@ void draw_walls(SDL_Renderer *renderer, int walls[][28])
 /**
  * raycast - function that is responsible for printing 3d world from a map
  *
- * renderer: the renderer to draw stuff to
- * posx: the x-coordinate possition for player
- * posY: the y coordinate of the player
- * dirX: the angle of the player with respect to the x-axis
- * walls: the array containing the walls of the maze
+ * @renderer: the renderer to draw stuff to
+ * @pos_x: the x-coordinate possition for player
+ * @pos_y: the y coordinate of the player
+ * @dir_x: the angle of the player with respect to the x-axis
+ * @walls: the array containing the walls of the maze
+ * Return: void, the function does not return anything
  */
 void raycast(SDL_Renderer *renderer, double pos_x, double pos_y, double dir_x,
 	     int walls[][28])
@@ -61,7 +62,7 @@ void raycast(SDL_Renderer *renderer, double pos_x, double pos_y, double dir_x,
 		start_angle = (dir_x + (FOV / 2)) - (2.0 * PI);
 	else
 		start_angle = dir_x + (FOV / 2);
-	
+
 	for (int x = 0; x < SCREEN_WIDTH; x++)
 	{
 		map_x = int(pos_x / WALL_SIZE);
@@ -128,10 +129,11 @@ void raycast(SDL_Renderer *renderer, double pos_x, double pos_y, double dir_x,
 /**
  * drawline - function draws a vertical line
  *
- * renderer: the renderer to right to
- * wall_type: the type of wall
- * column: the column to draw a line in
- * dist: the distance to the wall
+ * @renderer: the renderer to right to
+ * @wall_type: the type of wall
+ * @column: the column to draw a line in
+ * @dist: the distance to the wall
+ * Return: void, the function does not return any value
  */
 void drawline(SDL_Renderer *renderer, int wall_type, int column, double dist)
 {
@@ -139,10 +141,8 @@ void drawline(SDL_Renderer *renderer, int wall_type, int column, double dist)
 
 	if (wall_type == V_WALL)
 		SDL_SetRenderDrawColor(renderer, 0, 0, 60, 255);
-		//SDL_SetRenderDrawColor(renderer, 0, 40, 0, 255);
 	else
 		SDL_SetRenderDrawColor(renderer, 0, 0, 70, 255);
-		//SDL_SetRenderDrawColor(renderer, 0, 50, 0, 255);
 	/* Calculate wall height based on distance */
 	wall_height = double(PLANE_HEIGHT) / dist;
 
